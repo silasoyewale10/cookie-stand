@@ -6,6 +6,7 @@ var loc1 = {
     minCustomerPerHour:23,
     maxCustomerPerHour:65,
     avgCookieSale: 6.3
+    
 }
 
 var loc2 = {
