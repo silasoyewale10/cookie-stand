@@ -166,6 +166,7 @@ function Location(name, minCustomerPerHour, maxCustomerPerHour, avgCookieSale){
     this.hourlyCookies = [];
     //this.totalCookies = 0;
     this.salesTotal = 0;
+    //this.getCookyPerHour();
 }
     
     
@@ -180,6 +181,8 @@ Location.prototype.getCookyPerHour = function () {
     console.log("total is : ", this.salesTotal);
 
 }
+
+
 
 var arrOfStores = [];
 arrOfStores.push(new Location('seatle', 23,34,6.3,7, hours))
@@ -196,16 +199,64 @@ arrOfStores[2].getCookyPerHour();
 arrOfStores[3].getCookyPerHour();
 arrOfStores[4].getCookyPerHour();
 
-Location.prototype.renderPage = function (table){
-
+function th(table){
+    var thead = document.createElement('thead');
+    table.appendChild(thead);
+    var tr = document.createElement('tr');
+    thead.appendChild(tr);
 
     
+    
+    var th = document.createElement('th');
+    tr.appendChild(th);
+
+    
+    
+    var totalElement = document.createElement('th');
+        th.appendChild(totalElement);
+        totalElement.textContent = 'Total';
+        
+    for (var x=0; x<hours.length;x++){
+        var th = document.createElement('th');
+        tr.appendChild(th);
+        th.textContent = hours[x];
+    }
+    
+}
 
 
 
+// function th(table){
+//     var thead = document.createElement('thead');
+//     table.appendChild(thead);
+//     var tr = document.createElement('tr');
+//     thead.appendChild(tr);
+
+//     var th = document.createElement('th');
+//         tr.appendChild(th);
+//         // th.textContent = hours[x];
+
+//     for (var x=0; x<hours.length;x++){
+//         var th = document.createElement('th');
+//         tr.appendChild(th);
+//         th.textContent = hours[x];
+//     }
+
+// }
+
+
+
+
+
+
+
+
+Location.prototype.renderPage = function (table){
+    var tbody = document.createElement('tbody')  // testing
+    table.appendChild(tbody);
 
     var tr = document.createElement("tr");
-    table.appendChild(tr);
+    tbody.appendChild(tr);
     var th = document.createElement("th");
     tr.appendChild(th);
     th.textContent = this.name;
@@ -216,7 +267,13 @@ Location.prototype.renderPage = function (table){
 
     }
 } 
+
+
+
+
 var tabEl = document.getElementById('salesData');
+th(tabEl);
+
 arrOfStores[0].renderPage(tabEl);
 arrOfStores[1].renderPage(tabEl);
 arrOfStores[2].renderPage(tabEl);
