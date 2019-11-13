@@ -164,52 +164,62 @@ function Location(name, minCustomerPerHour, maxCustomerPerHour, avgCookieSale){
     this.avgCookieSale = avgCookieSale;
     //this.hourlyCookies.push(this.hourlyCookies());
     this.hourlyCookies = [];
+    //this.totalCookies = 0;
     this.salesTotal = 0;
-
 }
+    
+    
+
+
 Location.prototype.getCookyPerHour = function () {
     for (var x = 0; x < hours.length; x++){
-        
         var cookyCount = Math.ceil((this.avgCookieSale) * (Math.floor(Math.random() * (this.maxCustomerPerHour - this.minCustomerPerHour) + this.minCustomerPerHour)));
         this.hourlyCookies.push(cookyCount);
-        
+        this.salesTotal +=cookyCount;
     }
-    
+    console.log("total is : ", this.salesTotal);
+
 }
 
 var arrOfStores = [];
-arrOfStores.push(new Location('seatle', 23,34,6.3,7,hours))
+arrOfStores.push(new Location('seatle', 23,34,6.3,7, hours))
 arrOfStores.push(new Location('tokyo', 3,24,3,1.2,hours))
-// arrOfStores.push(new Location('dubai', 11,38,6,3.7,[]))
-// arrOfStores.push(new Location('paris', 20,38,5,2.3,[]))
-// arrOfStores.push(new Location('lima', 2,16,3,4.6,[]))
+arrOfStores.push(new Location('dubai', 11,38,6,3.7,[]))
+arrOfStores.push(new Location('paris', 20,38,5,2.3,[]))
+arrOfStores.push(new Location('lima', 2,16,3,4.6,[]))
 
 console.log('arr :', arrOfStores);
 
 arrOfStores[0].getCookyPerHour();
 arrOfStores[1].getCookyPerHour();
-
+arrOfStores[2].getCookyPerHour();
+arrOfStores[3].getCookyPerHour();
+arrOfStores[4].getCookyPerHour();
 
 Location.prototype.renderPage = function (table){
-   
+
+
+    
+
+
+
 
     var tr = document.createElement("tr");
     table.appendChild(tr);
-    //tr.textContent = this.;
-
     var th = document.createElement("th");
     tr.appendChild(th);
     th.textContent = this.name;
-
     for (var x = 0; x < this.hourlyCookies.length; x++){
         var td = document.createElement('td');
         tr.appendChild(td);
         td.textContent = this.hourlyCookies[x];
 
     }
-
 } 
-
 var tabEl = document.getElementById('salesData');
 arrOfStores[0].renderPage(tabEl);
 arrOfStores[1].renderPage(tabEl);
+arrOfStores[2].renderPage(tabEl);
+arrOfStores[3].renderPage(tabEl);
+arrOfStores[4].renderPage(tabEl);
+
