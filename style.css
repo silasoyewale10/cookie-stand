@@ -1,1 +1,15 @@
 /* will start building soon. */
+h2{
+    text-align: center;
+}
+/* img {
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+} */
+h2{
+    background-color: blueviolet;
+}
+html body {
+    background-color: crimson;
+}

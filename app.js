@@ -140,7 +140,7 @@
 
 // var p = document.createElement('p');
 // // p.textContent = 'hey';
-// article.appendChild(p);
+// article.appendChild(p) great bob so far;
 
 
 
