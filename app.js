@@ -166,10 +166,8 @@ function Location(name, minCustomerPerHour, maxCustomerPerHour, avgCookieSale){
     this.hourlyCookies = [];
     //this.totalCookies = 0;
     this.salesTotal = 0;
+    //this.getCookyPerHour();
 }
-    
-    
-
 
 Location.prototype.getCookyPerHour = function () {
     for (var x = 0; x < hours.length; x++){
@@ -184,9 +182,9 @@ Location.prototype.getCookyPerHour = function () {
 var arrOfStores = [];
 arrOfStores.push(new Location('seatle', 23,34,6.3,7, hours))
 arrOfStores.push(new Location('tokyo', 3,24,3,1.2,hours))
-arrOfStores.push(new Location('dubai', 11,38,6,3.7,[]))
-arrOfStores.push(new Location('paris', 20,38,5,2.3,[]))
-arrOfStores.push(new Location('lima', 2,16,3,4.6,[]))
+arrOfStores.push(new Location('dubai', 11,38,6,3.7,hours))
+arrOfStores.push(new Location('paris', 20,38,5,2.3,hours))
+arrOfStores.push(new Location('lima', 2,16,3,4.6,hours))
 
 console.log('arr :', arrOfStores);
 
@@ -196,30 +194,84 @@ arrOfStores[2].getCookyPerHour();
 arrOfStores[3].getCookyPerHour();
 arrOfStores[4].getCookyPerHour();
 
-Location.prototype.renderPage = function (table){
+function th(table){
+    var thead = document.createElement('thead');
+    table.appendChild(thead);
+    var tr = document.createElement('tr');
+    thead.appendChild(tr);
 
-
+    var citEle = document.createElement('th');
+        tr.appendChild(citEle);
+        citEle.textContent = 'Cities';
     
 
-
-
+    for (var x=0; x<hours.length;x++){
+        var th = document.createElement('th');
+        tr.appendChild(th);
+        th.textContent = hours[x];
+    }
+     
+    var citEle = document.createElement('th');
+        tr.appendChild(citEle);
+        citEle.textContent = 'Total';
+}
+Location.prototype.renderPage = function (table){
+    var tbody = document.createElement('tbody')  // testing
+    table.appendChild(tbody);
 
     var tr = document.createElement("tr");
-    table.appendChild(tr);
+    tbody.appendChild(tr);
     var th = document.createElement("th");
     tr.appendChild(th);
     th.textContent = this.name;
     for (var x = 0; x < this.hourlyCookies.length; x++){
         var td = document.createElement('td');
-        tr.appendChild(td);
         td.textContent = this.hourlyCookies[x];
-
+        tr.appendChild(td);
     }
+    var totalTD = document.createElement("td");
+    tr.appendChild(totalTD);
+    totalTD.textContent = this.salesTotal;
+
 } 
+
+function footerRow (table) {
+
+    var tr = document.createElement('tr');
+    table.appendChild(tr);
+    var totalTD = document.createElement('td');
+    tr.appendChild(totalTD);     //appending the cell (td) to the tr. 
+    // testing
+    totalTD.textContent = 'Total';
+
+    var megaSumHolder = 0;
+    for (var x = 0; x < hours.length; x++){
+        var sum =0;
+        for(var j = 0; j <arrOfStores.length; j++){
+            var currentStore = arrOfStores[j];
+            sum+= currentStore.hourlyCookies[x]; 
+            megaSumHolder += currentStore.salesTotal;  
+
+        }
+        // td.textContent = 'Total';
+        var td = document.createElement('td');
+        tr.appendChild(td);
+        td.textContent = sum;
+        // sum+= hours[x];
+    }
+    var tdMega = document.createElement('td');
+    tr.appendChild(tdMega);
+    //var megaSum = 0;
+    tdMega.textContent = (megaSumHolder/14);
+
+}
+
 var tabEl = document.getElementById('salesData');
+th(tabEl);
 arrOfStores[0].renderPage(tabEl);
 arrOfStores[1].renderPage(tabEl);
 arrOfStores[2].renderPage(tabEl);
 arrOfStores[3].renderPage(tabEl);
 arrOfStores[4].renderPage(tabEl);
+footerRow(tabEl);
 
