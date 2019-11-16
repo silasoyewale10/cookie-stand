@@ -8,11 +8,8 @@ function Location(name, minCustomerPerHour, maxCustomerPerHour, avgCookieSale){
     this.minCustomerPerHour = minCustomerPerHour;
     this.maxCustomerPerHour = maxCustomerPerHour;
     this.avgCookieSale = avgCookieSale;
-    //this.hourlyCookies.push(this.hourlyCookies());
     this.hourlyCookies = [];
-    //this.totalCookies = 0;
     this.salesTotal = 0;
-    //this.getCookyPerHour();
 }
 
 Location.prototype.getCookyPerHour = function () {
@@ -24,6 +21,7 @@ Location.prototype.getCookyPerHour = function () {
     console.log("total is : ", this.salesTotal);
 
 }
+
 
 
 
@@ -65,7 +63,7 @@ function th(table){
     citEle.textContent = 'Total';
 }
 Location.prototype.renderPage = function (table){
-    var tbody = document.createElement('tbody')  // testing
+    var tbody = document.createElement('tbody')  
     table.appendChild(tbody);
     
     var tr = document.createElement("tr");
@@ -84,13 +82,22 @@ Location.prototype.renderPage = function (table){
     
 } 
 
-function footerRow (table) {
+//new algorithhm implementation
+
+var footer = document.getElementById('footer');
+// table.appendChild(tfooter);
+// footerRow.innerHTML = ' ';
+
+
+
+function addFooterRow (table) {
     
     var tr = document.createElement('tr');
+    //testing from here
+    //tr.setAttribute
     table.appendChild(tr);
     var totalTD = document.createElement('td');
-    tr.appendChild(totalTD);     //appending the cell (td) to the tr. 
-    // testin
+    tr.appendChild(totalTD);     
     totalTD.textContent = 'Total';
     
     var megaSumHolder = 0;
@@ -102,35 +109,34 @@ function footerRow (table) {
             megaSumHolder += currentStore.salesTotal;  
             
         }
-        // td.textContent = 'Total';
         var td = document.createElement('td');
         tr.appendChild(td);
         td.textContent = sum;
-        // sum+= hours[x];
     }
     var tdMega = document.createElement('td');
     tr.appendChild(tdMega);
-    //var megaSum = 0;
     tdMega.textContent = (megaSumHolder/14);
     
 }
 var form = document.getElementById("fishStoreForm");
 var tabEl = document.getElementById('salesData');
+
+
 function submitNewStore (event){
-    event.preventDefault();   //to prevent default case from happening
-    
+    event.preventDefault();   
     var store = new Location(event.target.name.value, parseInt(event.target.minCustomerPerHour.value),  parseInt(event.target.maxCustomerPerHour.value),  parseFloat(event.target.avgCookieSale.value));
     store.getCookyPerHour();
     store.renderPage(tabEl);
     arrOfStores.push(store);
+    footer.innerHTML = '';
+    addFooterRow(footer);
     //th();
-    event.target.reset();   //to reset after each submit
+    event.target.reset();   
     console.log(store)
-    
-
 }
-form.addEventListener('submit', submitNewStore);
 
+form.addEventListener('submit', submitNewStore);
+//console.log('object:', store);
 th(tabEl);
 arrOfStores[0].renderPage(tabEl);
 arrOfStores[1].renderPage(tabEl);
@@ -138,5 +144,5 @@ arrOfStores[2].renderPage(tabEl);
 arrOfStores[3].renderPage(tabEl);
 arrOfStores[4].renderPage(tabEl);
 //arrOfStores[5].renderPage(tabEl);
-//new addtion from here to next space
-footerRow(tabEl);
+
+addFooterRow(footer);
