@@ -1,5 +1,35 @@
-/* will start buildin soon. */
-
 body{
     background-color: aquamarine;
+    color-interpolation-filters: auto;
+    text-align: center;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ6SObFgF_cwOcrIqR_q8nv6oY9aL4luMvnEa1byPPVafxonUN&s");
+    background-blend-mode: saturation;
+
+}
+* {
+    box-sizing: border-box;
+}
+.column {
+    float: left;
+    width:33.33%;
+    padding: 10px;
+    height: 300px;
+}
+h1{
+    color: rgb(7, 7, 7);
+}
+* link{
+font-family: 'Lora', serif;
+}
+ul{
+    list-style-type: none;
+    border-spacing: 10%;
+}
+li{
+    display:inline;
+    /* float:left; */
+    border:500;
+    padding:60px;
+    width:50px;
+    border-block-color: black;
 }
