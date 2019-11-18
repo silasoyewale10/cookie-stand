@@ -17,9 +17,13 @@ body{
 }
 h1{
     color: rgb(7, 7, 7);
+    background-color: cornsilk;
+    margin-top: -15px;
+    width:100%;
+    text-emphasis-color: yellow;
 }
 * link{
-font-family: 'Lora', serif;
+    font-family: sans-serif;
 }
 ul{
     list-style-type: none;
@@ -32,4 +36,15 @@ li{
     padding:60px;
     width:50px;
     border-block-color: black;
+}
+title{
+    background-color: yellow;
+}
+
+footer{
+    padding:25%;
+    margin-bottom: 10px;
+}
+img{
+    color-adjust:yellow;
 }

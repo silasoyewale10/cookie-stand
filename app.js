@@ -136,7 +136,7 @@ function submitNewStore (event){
 }
 
 form.addEventListener('submit', submitNewStore);
-//console.log('object:', store);
+//console.log('objet:', store);
 th(tabEl);
 arrOfStores[0].renderPage(tabEl);
 arrOfStores[1].renderPage(tabEl);
